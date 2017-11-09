@@ -4,17 +4,17 @@ using System.Text;
 
 namespace ProjetoEvento.ClassePai.ClassesFilhas
 {
-    public class Show : Evento
+    public class Teatro : Evento
     {
-        public Show(string artista, string generoMusical)
+        public Teatro(string[] elenco, string diretor)
         {
-            this.Artista = artista;
-            this.GeneroMusical = generoMusical;
+            this.Elenco = elenco;
+            this.Diretor = diretor;
         }
-        public string Artista { get; set; }
-        public string GeneroMusical { get; set; }
+        public string[] Elenco { get; set; }
+        public string Diretor { get; set; }
 
-        public Show(string Titulo, string Local, int Lotacao, string Duracao, int Classificacao, DateTime Data, string Artista, string GeneroMusical)
+        public Teatro(string Titulo, string Local, int Lotacao, string Duracao, int Classificacao, DateTime Data, string[] Elenco, string Diretor)
         {
 
             base.Titulo = Titulo;
@@ -23,18 +23,24 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             base.Duracao = Duracao;
             base.Classificao = Classificacao;
             base.Data = Data;
-            this.Artista = Artista;
-            this.GeneroMusical = GeneroMusical;
-
+            this.Elenco = Elenco;
+            this.Diretor = Diretor;
         }
+        
         public override bool Cadastrar()
         {
             bool efetuado = false;
             StreamWriter arquivo = null;
             try
             {
-                arquivo = new StreamWriter("show.csv", true);
-                arquivo.WriteLine(Titulo + ";" + Local + ";" + Duracao + ";" + Data + ";" + Lotacao + ";" + Classificao + ";" + Artista + ";" + GeneroMusical);
+                string elenco1 = "";
+                foreach(string ator in Elenco){
+                    elenco1 += (ator + ",");
+                }
+                elenco1 = elenco1.Substring(0, (elenco1.Length) - 1);
+
+                arquivo = new StreamWriter("teatro.csv", true);
+                arquivo.WriteLine(Titulo + ";" + Local + ";" + Duracao + ";" + Data + ";" + Lotacao + ";" + Classificao + ";" + Elenco + ";" + Diretor);
                 efetuado = true;
             }
             catch (Exception ex)
@@ -49,21 +55,25 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
         }
 
         /// <summary>
-        /// Pesquisa o título do show
+        /// Pesquisa o elenco do teatro
         /// </summary>
-        /// <param name="Titulo">Utiliza o parâmetro do tipo string</param>
-        /// <returns>Retorna se encontrou ou não o título pesquisado</returns>
-        public override string Pesquisar(string Titulo)
+        /// <param name="Elenco">Utiliza o parâmetro do tipo string</param>
+        /// <returns>Retorna se encontrou ou não o ator dentro de elenco</returns>
+        public override string Pesquisar(string Elenco)
         {
-            string resultado = "Artista não encontrado.";
+            string resultado = "Ator não encontrado.";
             StreamReader ler = null;
             try
             {
-                ler = new StreamReader("show.csv", Encoding.Default);
+                
+                ler = new StreamReader("teatro.csv", Encoding.Default);
                 string linha = "";
+                if (Elenco[].Contains(linha)){
+                    
+                }
                 while((linha = ler.ReadLine()) != null){
                     string[] dados = linha.Split(';');
-                    if(dados[6] == Titulo){
+                    if(dados[0] == Elenco){
                         resultado = linha;
                         break;
                     }
@@ -79,17 +89,17 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             return resultado;
         }
 
-        public override string Pesquisar(DateTime Data)
+        public string Pesquisardiretor (string Diretor)
         {
-            string resultado = "Nenhum show para esta data.";
+            string resultado = "Diretor não encontrado.";
             StreamReader ler = null;
             try
             {
-                ler = new StreamReader("show.csv", Encoding.Default);
+                ler = new StreamReader("teatro.csv", Encoding.Default);
                 string linha = "";
                 while((linha = ler.ReadLine()) != null){
                     string[] dados = linha.Split(';');
-                    if(dados[3] == Data.ToString()){
+                    if(dados[7] == Diretor.ToString()){
                         resultado = linha;
                         break;
                     }
@@ -103,8 +113,6 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
                 ler.Close();
             }
             return resultado;
-        
-        
         }
     }
-}
+} 

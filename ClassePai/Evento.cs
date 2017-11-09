@@ -12,7 +12,7 @@ namespace ProjetoEvento.ClassePai
         public int Classificao { get; set; }
 
 
-
+        
         public virtual bool Cadastrar(){
             return false;
         }
