@@ -27,6 +27,11 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             this.Diretor = Diretor;
         }
         
+        /// <summary>
+        /// Efetua o cadastro de um novo show.
+        /// </summary>
+        /// <param name="Cadastrar">Utiliza o parâmetro do tipo boolean.</param>
+        /// <returns>Não retorna dados, apenas realiza o cadastro.</returns>
         public override bool Cadastrar()
         {
             bool efetuado = false;
@@ -68,14 +73,13 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
                 
                 ler = new StreamReader("teatro.csv", Encoding.Default);
                 string linha = "";
-                if (Elenco[].Contains(linha)){
-                    
-                }
-                while((linha = ler.ReadLine()) != null){
-                    string[] dados = linha.Split(';');
-                    if(dados[0] == Elenco){
-                        resultado = linha;
-                        break;
+                if (Elenco.Contains(linha)){
+                    while((linha = ler.ReadLine()) != null){
+                        string[] dados = linha.Split(';');
+                        if(dados[6] == Elenco){
+                            resultado = linha;
+                            break;
+                        }
                     }
                 }
             }
@@ -114,5 +118,31 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             }
             return resultado;
         }
+        public string PesquisarTitulo(string Titulo)
+        {
+            string resultado = "Título não encontrado.";
+            StreamReader ler = null;
+            try
+            {
+                ler = new StreamReader("teatro.csv", Encoding.Default);
+                string linha = "";
+                while((linha = ler.ReadLine()) != null){
+                    string[] dados = linha.Split(';');
+                    if(dados[0] == Titulo){
+                        resultado = linha;
+                        break;
+                    }
+                }
+            }
+            catch(Exception ex){
+                resultado = "Erro ao tentar ler o arquivo." + ex.Message;
+
+            }
+            finally{
+                ler.Close();
+            }
+            return resultado;
+        }
+
     }
 } 

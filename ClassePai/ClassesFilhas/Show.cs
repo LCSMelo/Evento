@@ -27,6 +27,10 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             this.GeneroMusical = GeneroMusical;
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override bool Cadastrar()
         {
             bool efetuado = false;
@@ -49,10 +53,10 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
         }
 
         /// <summary>
-        /// Pesquisa o título do show
+        /// Pesquisa o título do show.
         /// </summary>
-        /// <param name="Titulo">Utiliza o parâmetro do tipo string</param>
-        /// <returns>Retorna se encontrou ou não o título pesquisado</returns>
+        /// <param name="Titulo">Utiliza o parâmetro do tipo string.</param>
+        /// <returns>Retorna se encontrou ou não o título pesquisado.</returns>
         public override string Pesquisar(string Titulo)
         {
             string resultado = "Artista não encontrado.";
@@ -79,6 +83,11 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             return resultado;
         }
 
+        /// <summary>
+        /// Pesquisa a data do show.
+        /// </summary>
+        /// <param name="Titulo">Utiliza o parâmetro do tipo DataTime.</param>
+        /// <returns>Retorna se encontrou a data pesquisada.</returns>
         public override string Pesquisar(DateTime Data)
         {
             string resultado = "Nenhum show para esta data.";
