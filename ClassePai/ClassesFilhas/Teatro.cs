@@ -16,12 +16,11 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
 
         public Teatro(string Titulo, string Local, int Lotacao, string Duracao, int Classificacao, DateTime Data, string[] Elenco, string Diretor)
         {
-
             base.Titulo = Titulo;
             base.Local = Local;
             base.Lotacao = Lotacao;
             base.Duracao = Duracao;
-            base.Classificao = Classificacao;
+            base.Classificacao = Classificacao;
             base.Data = Data;
             this.Elenco = Elenco;
             this.Diretor = Diretor;
@@ -45,7 +44,7 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
                 elenco1 = elenco1.Substring(0, (elenco1.Length) - 1);
 
                 arquivo = new StreamWriter("teatro.csv", true);
-                arquivo.WriteLine(Titulo + ";" + Local + ";" + Duracao + ";" + Data + ";" + Lotacao + ";" + Classificao + ";" + Elenco + ";" + Diretor);
+                arquivo.WriteLine(Titulo + ";" + Local + ";" + Duracao + ";" + Data + ";" + Lotacao + ";" + Classificacao + ";" + Elenco + ";" + Diretor);
                 efetuado = true;
             }
             catch (Exception ex)

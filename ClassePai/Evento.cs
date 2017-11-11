@@ -9,7 +9,7 @@ namespace ProjetoEvento.ClassePai
         public DateTime Data { get; set; }
         public int Lotacao { get; set; }
         public string Duracao { get; set; }
-        public int Classificao { get; set; }
+        public int Classificacao { get; set; }
 
 
         /// <summary>

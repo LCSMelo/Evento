@@ -6,13 +6,13 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
 {
     public class Show : Evento
     {
+        public string Artista { get; set; }
+        public string GeneroMusical { get; set; }
         public Show(string artista, string generoMusical)
         {
             this.Artista = artista;
             this.GeneroMusical = generoMusical;
         }
-        public string Artista { get; set; }
-        public string GeneroMusical { get; set; }
 
         public Show(string Titulo, string Local, int Lotacao, string Duracao, int Classificacao, DateTime Data, string Artista, string GeneroMusical)
         {
@@ -21,16 +21,17 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             base.Local = Local;
             base.Lotacao = Lotacao;
             base.Duracao = Duracao;
-            base.Classificao = Classificacao;
+            base.Classificacao = Classificacao;
             base.Data = Data;
             this.Artista = Artista;
             this.GeneroMusical = GeneroMusical;
 
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+
+        public Show()
+        {
+        }
+
         public override bool Cadastrar()
         {
             bool efetuado = false;
@@ -38,7 +39,7 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             try
             {
                 arquivo = new StreamWriter("show.csv", true);
-                arquivo.WriteLine(Titulo + ";" + Local + ";" + Duracao + ";" + Data + ";" + Lotacao + ";" + Classificao + ";" + Artista + ";" + GeneroMusical);
+                arquivo.WriteLine(Titulo + ";" + Local + ";" + Duracao + ";" + Data + ";" + Lotacao + ";" + Classificacao + ";" + Artista + ";" + GeneroMusical);
                 efetuado = true;
             }
             catch (Exception ex)
@@ -67,7 +68,7 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
                 string linha = "";
                 while((linha = ler.ReadLine()) != null){
                     string[] dados = linha.Split(';');
-                    if(dados[6] == Titulo){
+                    if(dados[0].ToUpper() == Titulo.ToUpper()){
                         resultado = linha;
                         break;
                     }
@@ -75,19 +76,12 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             }
             catch(Exception ex){
                 resultado = "Erro ao tentar ler o arquivo." + ex.Message;
-
             }
             finally{
                 ler.Close();
             }
             return resultado;
         }
-
-        /// <summary>
-        /// Pesquisa a data do show.
-        /// </summary>
-        /// <param name="Titulo">Utiliza o parâmetro do tipo DataTime.</param>
-        /// <returns>Retorna se encontrou a data pesquisada.</returns>
         public override string Pesquisar(DateTime Data)
         {
             string resultado = "Nenhum show para esta data.";
@@ -115,5 +109,6 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
         
         
         }
+
     }
 }
