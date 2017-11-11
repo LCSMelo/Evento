@@ -60,7 +60,7 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
         /// <returns>Retorna se encontrou ou não o título pesquisado.</returns>
         public override string Pesquisar(string Titulo)
         {
-            string resultado = "Artista não encontrado.";
+            string resultado = "Título não encontrado.";
             StreamReader ler = null;
             try
             {
