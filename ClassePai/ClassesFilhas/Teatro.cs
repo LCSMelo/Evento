@@ -6,6 +6,9 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
 {
     public class Teatro : Evento
     {
+        private DateTime data;
+        private string elenco;
+
         public Teatro(string[] elenco, string diretor)
         {
             this.Elenco = elenco;
@@ -25,7 +28,23 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             this.Elenco = Elenco;
             this.Diretor = Diretor;
         }
-        
+
+        public Teatro(string titulo, string local, int lotacao, string duracao, int classificacao, DateTime data, string elenco, string diretor)
+        {
+            Titulo = titulo;
+            Local = local;
+            Lotacao = lotacao;
+            Duracao = duracao;
+            Classificacao = classificacao;
+            this.data = data;
+            this.elenco = elenco;
+            Diretor = diretor;
+        }
+
+        public Teatro()
+        {
+        }
+
         /// <summary>
         /// Efetua o cadastro de um novo show.
         /// </summary>

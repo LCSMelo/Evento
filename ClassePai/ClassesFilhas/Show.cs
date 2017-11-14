@@ -16,7 +16,6 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
 
         public Show(string Titulo, string Local, int Lotacao, string Duracao, int Classificacao, DateTime Data, string Artista, string GeneroMusical)
         {
-
             base.Titulo = Titulo;
             base.Local = Local;
             base.Lotacao = Lotacao;
@@ -25,13 +24,16 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             base.Data = Data;
             this.Artista = Artista;
             this.GeneroMusical = GeneroMusical;
-
         }
 
         public Show()
         {
         }
-
+        /// <summary>
+        /// Efetua o cadastro de um novo show.
+        /// </summary>
+        /// <param name="Cadastrar">Utiliza o parâmetro do tipo boolean.</param>
+        /// <returns>Não retorna informações.</returns>
         public override bool Cadastrar()
         {
             bool efetuado = false;
@@ -82,6 +84,11 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             }
             return resultado;
         }
+        /// <summary>
+        /// Pesquisa a data do show.
+        /// </summary>
+        /// <param name="Data">Utiliza um parâmetro do tipo DateTime.</param>
+        /// <returns>Retorna o resultado da pesquisa.</returns>
         public override string Pesquisar(DateTime Data)
         {
             string resultado = "Nenhum show para esta data.";
@@ -100,15 +107,11 @@ namespace ProjetoEvento.ClassePai.ClassesFilhas
             }
             catch(Exception ex){
                 resultado = "Erro ao tentar ler o arquivo." + ex.Message;
-
             }
             finally{
                 ler.Close();
             }
-            return resultado;
-        
-        
+            return resultado;      
         }
-
     }
 }
